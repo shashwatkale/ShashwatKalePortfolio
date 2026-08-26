@@ -1,4 +1,4 @@
-import { Volume2, VolumeX, Radio, Sparkles, Gamepad2 } from 'lucide-react';
+import { Volume2, VolumeX, Radio, Sparkles, Bot } from 'lucide-react';
 import { useScrollStore } from '../../stores/scrollStore';
 import { audioEngine } from '../../utils/audioEngine';
 
@@ -7,7 +7,7 @@ export function Navigation() {
   const isMuted = useScrollStore((s) => s.isMuted);
   const toggleAudio = useScrollStore((s) => s.toggleAudio);
   const toggleMute = useScrollStore((s) => s.toggleMute);
-  const toggleGamingModal = useScrollStore((s) => s.toggleGamingModal);
+  const toggleAgentModal = useScrollStore((s) => s.toggleAgentModal);
 
   const handleToggleSound = () => {
     audioEngine.playClick();
@@ -43,16 +43,16 @@ export function Navigation() {
 
       {/* Right HUD Controls */}
       <div className="flex items-center gap-3 sm:gap-4">
-        {/* Gaming Arena Quick Trigger */}
+        {/* Agent Swarm Simulator Trigger */}
         <button
           onClick={() => {
             audioEngine.playClick();
-            toggleGamingModal();
+            toggleAgentModal();
           }}
-          className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-pink-500/10 hover:bg-pink-500/20 border border-pink-500/30 text-xs font-mono-tech text-pink-300 hover:text-pink-200 transition-all cursor-pointer shadow-[0_0_15px_rgba(236,72,153,0.2)]"
+          className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-cyan-500/10 hover:bg-cyan-500/20 border border-cyan-500/30 text-xs font-mono-tech text-cyan-300 hover:text-cyan-200 transition-all cursor-pointer shadow-[0_0_15px_rgba(0,240,255,0.2)]"
         >
-          <Gamepad2 className="w-3.5 h-3.5 text-pink-400" />
-          <span className="hidden sm:inline">GAMING ARENA</span>
+          <Bot className="w-3.5 h-3.5 text-cyan-400" />
+          <span className="hidden sm:inline">AGENT SWARM LAB</span>
         </button>
 
         {/* Social Links */}

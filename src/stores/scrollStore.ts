@@ -6,24 +6,24 @@ export interface ScrollState {
   sceneName: string;
   isMuted: boolean;
   isPlayingAudio: boolean;
-  isGamingModalOpen: boolean;
+  isAgentModalOpen: boolean;
   mouse: { x: number; y: number; targetX: number; targetY: number };
   setProgress: (progress: number) => void;
   setActiveScene: (scene: number, name: string) => void;
   toggleMute: () => void;
   toggleAudio: () => void;
-  toggleGamingModal: () => void;
-  setGamingModalOpen: (open: boolean) => void;
+  toggleAgentModal: () => void;
+  setAgentModalOpen: (open: boolean) => void;
   setMouse: (x: number, y: number) => void;
 }
 
 const SCENE_NAMES = [
-  'SYSTEM INITIALIZING',
-  'INTELLIGENCE & NEURAL NET',
-  'SYSTEMS & ARCHITECTURE',
-  'AUTONOMOUS PROJECTS',
-  'GAMING & VIRTUAL WORLDS',
-  'NEXUS CONVERGENCE',
+  'SYSTEM INITIALIZING // TENSOR AWAKENING',
+  'NEURAL SYNAPSE // ATTENTION HEADS',
+  'VECTOR SPACE // RAG ARCHITECTURE',
+  'PRODUCTION AI // FEATURED SYSTEMS',
+  'AUTONOMOUS AGENTS // LANGGRAPH SWARM',
+  'NEXUS CONVERGENCE // COLLABORATE',
 ];
 
 export const useScrollStore = create<ScrollState>((set) => ({
@@ -32,7 +32,7 @@ export const useScrollStore = create<ScrollState>((set) => ({
   sceneName: SCENE_NAMES[0],
   isMuted: false,
   isPlayingAudio: false,
-  isGamingModalOpen: false,
+  isAgentModalOpen: false,
   mouse: { x: 0, y: 0, targetX: 0, targetY: 0 },
 
   setProgress: (progress: number) => {
@@ -58,9 +58,9 @@ export const useScrollStore = create<ScrollState>((set) => ({
 
   toggleAudio: () => set((state) => ({ isPlayingAudio: !state.isPlayingAudio })),
 
-  toggleGamingModal: () => set((state) => ({ isGamingModalOpen: !state.isGamingModalOpen })),
+  toggleAgentModal: () => set((state) => ({ isAgentModalOpen: !state.isAgentModalOpen })),
 
-  setGamingModalOpen: (open: boolean) => set({ isGamingModalOpen: open }),
+  setAgentModalOpen: (open: boolean) => set({ isAgentModalOpen: open }),
 
   setMouse: (targetX: number, targetY: number) =>
     set((state) => ({

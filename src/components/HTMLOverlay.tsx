@@ -4,9 +4,9 @@ import { HeroOverlay } from './ui/HeroOverlay';
 import { IntelligenceOverlay } from './ui/IntelligenceOverlay';
 import { EngineeringOverlay } from './ui/EngineeringOverlay';
 import { ProjectsOverlay } from './ui/ProjectsOverlay';
-import { GamingOverlay } from './ui/GamingOverlay';
+import { AgentSwarmOverlay } from './ui/AgentSwarmOverlay';
 import { FinalOverlay } from './ui/FinalOverlay';
-import { GamingModal } from './ui/GamingModal';
+import { AgentMatrixModal } from './ui/AgentMatrixModal';
 import { NoiseOverlay } from './ui/NoiseOverlay';
 
 export function HTMLOverlay() {
@@ -21,11 +21,11 @@ export function HTMLOverlay() {
       <IntelligenceOverlay />
       <EngineeringOverlay />
       <ProjectsOverlay />
-      <GamingOverlay />
+      <AgentSwarmOverlay />
       <FinalOverlay />
 
-      {/* Dedicated Interactive Gaming Arena Hub Modal */}
-      <GamingModal />
+      {/* Dedicated Interactive Agent Swarm & MCP Simulator Modal */}
+      <AgentMatrixModal />
     </div>
   );
 }

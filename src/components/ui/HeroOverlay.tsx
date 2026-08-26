@@ -1,4 +1,4 @@
-import { ArrowDown, Cpu, Sparkles } from 'lucide-react';
+import { ArrowDown, Cpu, Sparkles, Bot } from 'lucide-react';
 import { useScrollStore } from '../../stores/scrollStore';
 
 export function HeroOverlay() {
@@ -36,13 +36,13 @@ export function HeroOverlay() {
           <div className="flex flex-wrap items-center gap-3 text-sm sm:text-base font-mono-tech text-slate-300">
             <span className="text-cyan-400 font-bold">GENERATIVE AI ENGINEER</span>
             <span className="text-slate-600">/</span>
-            <span>MCP & AGENT ARCHITECT</span>
+            <span>MCP & AGENTIC WORKFLOWS</span>
             <span className="text-slate-600">/</span>
-            <span className="text-fuchsia-400 font-bold">GAMER</span>
+            <span className="text-fuchsia-400 font-bold">ENTERPRISE RAG ARCHITECT</span>
           </div>
 
           <p className="text-sm sm:text-base text-slate-400 max-w-xl font-light leading-relaxed">
-            Building enterprise RAG pipelines, custom GitHub Copilot agents, MCP tool-calling servers, and structured LLM systems in production.
+            Specializing in LangGraph agentic pipelines, custom GitHub Copilot agents, Model Context Protocol (MCP) servers, and production document intelligence.
           </p>
         </div>
       </div>
@@ -51,11 +51,11 @@ export function HeroOverlay() {
       <div className="flex items-center justify-between border-t border-white/10 pt-4 pb-12 sm:pb-8 text-xs font-mono-tech text-slate-400">
         <div className="flex items-center gap-3">
           <span className="w-2 h-2 rounded-full bg-cyan-400 animate-ping" />
-          <span className="tracking-wider">SCROLL VERTICALLY TO ENTER THE AI NEURAL ARCHITECTURE</span>
+          <span className="tracking-wider">SCROLL VERTICALLY TO ENTER THE AI NEURAL MATRIX</span>
         </div>
         <div className="hidden sm:flex items-center gap-2 text-cyan-400">
-          <Sparkles className="w-3.5 h-3.5" />
-          <span>CONTINUOUS 3D JOURNEY</span>
+          <Bot className="w-3.5 h-3.5 animate-pulse" />
+          <span>CONTINUOUS 3D AI JOURNEY</span>
           <ArrowDown className="w-3.5 h-3.5 animate-bounce ml-1" />
         </div>
       </div>

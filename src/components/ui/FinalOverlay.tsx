@@ -1,4 +1,4 @@
-import { ArrowUp, Mail, MapPin, GraduationCap, Terminal } from 'lucide-react';
+import { ArrowUp, Mail, MapPin, GraduationCap, Terminal, Bot } from 'lucide-react';
 import { useScrollStore } from '../../stores/scrollStore';
 import { audioEngine } from '../../utils/audioEngine';
 
@@ -30,22 +30,23 @@ export function FinalOverlay() {
         </div>
 
         <div className="space-y-1">
-          <div className="text-xs font-mono-tech text-slate-400 tracking-[0.3em] uppercase">
-            GENAI ENGINEER • AGENTS • RAG • GAMER
+          <div className="flex items-center justify-center gap-2 text-xs font-mono-tech text-slate-400 tracking-[0.3em] uppercase">
+            <Bot className="w-3.5 h-3.5 text-cyan-400" />
+            <span>GENERATIVE AI ENGINEER • AGENTIC SYSTEMS • RAG</span>
           </div>
           <h2 className="text-5xl sm:text-7xl md:text-8xl font-display font-extrabold text-white tracking-tight leading-[0.92]">
             LET'S BUILD <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-fuchsia-400 to-amber-300">
-              SOMETHING.
+              INTELLIGENCE.
             </span>
           </h2>
         </div>
 
         <p className="text-sm sm:text-base text-slate-300 max-w-lg mx-auto font-light leading-relaxed">
-          Open for GenAI engineering collaborations, production RAG & Agentic workflows, and high-impact AI systems.
+          Open for enterprise GenAI collaborations, production Agentic & RAG pipelines, and innovative AI product engineering.
         </p>
 
-        {/* Contact Badges (Phone & CGPA removed) */}
+        {/* Location & Degree Badges */}
         <div className="flex flex-wrap items-center justify-center gap-3 text-xs font-mono-tech text-slate-300">
           <span className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/[0.04] border border-white/10">
             <MapPin className="w-3.5 h-3.5 text-cyan-400" /> Hyderabad, India

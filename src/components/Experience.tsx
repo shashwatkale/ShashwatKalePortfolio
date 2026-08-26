@@ -3,8 +3,9 @@ import { Lighting } from './three/Lighting';
 import { Particles } from './three/Particles';
 import { AICore } from './three/AICore';
 import { NeuralNetwork } from './three/NeuralNetwork';
+import { VectorSpaceWorld } from './three/VectorSpaceWorld';
 import { ProjectsWorld } from './three/ProjectsWorld';
-import { GamingWorld } from './three/GamingWorld';
+import { AutonomousAgentsWorld } from './three/AutonomousAgentsWorld';
 
 export function Experience() {
   return (
@@ -17,8 +18,9 @@ export function Experience() {
       <Particles />
       <AICore />
       <NeuralNetwork />
+      <VectorSpaceWorld />
       <ProjectsWorld />
-      <GamingWorld />
+      <AutonomousAgentsWorld />
     </>
   );
 }

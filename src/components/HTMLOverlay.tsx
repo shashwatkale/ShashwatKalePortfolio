@@ -7,6 +7,7 @@ import { ProjectsOverlay } from './ui/ProjectsOverlay';
 import { AgentSwarmOverlay } from './ui/AgentSwarmOverlay';
 import { FinalOverlay } from './ui/FinalOverlay';
 import { AgentMatrixModal } from './ui/AgentMatrixModal';
+import { AIChatBot } from './ui/AIChatBot';
 import { NoiseOverlay } from './ui/NoiseOverlay';
 
 export function HTMLOverlay() {
@@ -26,6 +27,9 @@ export function HTMLOverlay() {
 
       {/* Dedicated Interactive Agent Swarm & MCP Simulator Modal */}
       <AgentMatrixModal />
+
+      {/* Interactive AI Knowledge Copilot Chatbot */}
+      <AIChatBot />
     </div>
   );
 }

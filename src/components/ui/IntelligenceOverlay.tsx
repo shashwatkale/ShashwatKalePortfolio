@@ -2,6 +2,7 @@ import { useScrollStore } from '../../stores/scrollStore';
 
 export function IntelligenceOverlay() {
   const progress = useScrollStore((s) => s.progress);
+  const mode = useScrollStore((s) => s.mode);
 
   // Active between 0.18 and 0.40
   let opacity = 0;
@@ -23,35 +24,71 @@ export function IntelligenceOverlay() {
       style={{ opacity }}
     >
       <div className="max-w-3xl space-y-6">
-        <div className="flex items-center gap-2 text-xs font-mono-tech text-cyan-400 tracking-widest uppercase">
-          <span>02 // PRODUCTION AI & MCP FRAMEWORKS</span>
+        <div
+          className={`flex items-center gap-2 text-xs font-mono-tech tracking-widest uppercase ${
+            mode === 'gamer' ? 'text-pink-400' : 'text-cyan-400'
+          }`}
+        >
+          <span>{mode === 'gamer' ? '02 // 3D GRAPHICS & VIRTUAL WORLDS' : '02 // PRODUCTION AI & MCP FRAMEWORKS'}</span>
         </div>
 
         <h2 className="text-5xl sm:text-7xl md:text-8xl font-display font-extrabold text-white tracking-tighter leading-[0.9]">
-          I BUILD <br />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-fuchsia-400 to-amber-300">
-            INTELLIGENCE.
-          </span>
+          {mode === 'gamer' ? (
+            <>
+              I BUILD WORLDS. <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-rose-400 to-amber-300">
+                I PLAY IN THEM.
+              </span>
+            </>
+          ) : (
+            <>
+              I BUILD <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-fuchsia-400 to-amber-300">
+                INTELLIGENCE.
+              </span>
+            </>
+          )}
         </h2>
 
         <p className="text-base sm:text-lg text-slate-300 max-w-xl font-light leading-relaxed">
-          At <strong className="text-white font-semibold">TCS</strong>, I build enterprise Agentic AI + RAG document intelligence platforms, custom GitHub Copilot agents, and Model Context Protocol (MCP) servers with structured JSON schemas for zero-hallucination extraction.
+          {mode === 'gamer'
+            ? 'Engineering procedural WebGL shaders, GLSL raymarching, spatial physics, and ultra-high-refresh 3D experiences with zero dropped frames.'
+            : 'At TCS, I build enterprise Agentic AI + RAG document intelligence platforms, custom GitHub Copilot agents, and Model Context Protocol (MCP) servers with structured JSON schemas for zero-hallucination extraction.'}
         </p>
 
-        {/* Core AI Competency Grid */}
+        {/* Competency Grid */}
         <div className="grid grid-cols-3 gap-3 pt-2 max-w-xl">
-          <div className="p-3.5 rounded-2xl bg-[#070b16]/80 border border-cyan-500/20 backdrop-blur-md">
-            <div className="text-[10px] font-mono-tech text-slate-400 uppercase">FRAMEWORKS</div>
-            <div className="text-sm font-mono-tech font-bold text-cyan-400">LANGGRAPH · MCP</div>
-          </div>
-          <div className="p-3.5 rounded-2xl bg-[#070b16]/80 border border-cyan-500/20 backdrop-blur-md">
-            <div className="text-[10px] font-mono-tech text-slate-400 uppercase">PIPELINES</div>
-            <div className="text-sm font-mono-tech font-bold text-fuchsia-400">ENTERPRISE RAG</div>
-          </div>
-          <div className="p-3.5 rounded-2xl bg-[#070b16]/80 border border-cyan-500/20 backdrop-blur-md">
-            <div className="text-[10px] font-mono-tech text-slate-400 uppercase">FOUNDATION MODELS</div>
-            <div className="text-sm font-mono-tech font-bold text-emerald-400">GEMINI · CLAUDE</div>
-          </div>
+          {mode === 'gamer' ? (
+            <>
+              <div className="p-3.5 rounded-2xl bg-[#120818]/80 border border-pink-500/20 backdrop-blur-md">
+                <div className="text-[10px] font-mono-tech text-slate-400 uppercase">FRAME TARGET</div>
+                <div className="text-sm font-mono-tech font-bold text-pink-400">240+ FPS</div>
+              </div>
+              <div className="p-3.5 rounded-2xl bg-[#120818]/80 border border-pink-500/20 backdrop-blur-md">
+                <div className="text-[10px] font-mono-tech text-slate-400 uppercase">LATENCY</div>
+                <div className="text-sm font-mono-tech font-bold text-purple-400">&lt; 4.1 MS</div>
+              </div>
+              <div className="p-3.5 rounded-2xl bg-[#120818]/80 border border-pink-500/20 backdrop-blur-md">
+                <div className="text-[10px] font-mono-tech text-slate-400 uppercase">ENGINE</div>
+                <div className="text-sm font-mono-tech font-bold text-amber-300">THREE.JS / GLSL</div>
+              </div>
+            </>
+          ) : (
+            <>
+              <div className="p-3.5 rounded-2xl bg-[#070b16]/80 border border-cyan-500/20 backdrop-blur-md">
+                <div className="text-[10px] font-mono-tech text-slate-400 uppercase">FRAMEWORKS</div>
+                <div className="text-sm font-mono-tech font-bold text-cyan-400">LANGGRAPH · MCP</div>
+              </div>
+              <div className="p-3.5 rounded-2xl bg-[#070b16]/80 border border-cyan-500/20 backdrop-blur-md">
+                <div className="text-[10px] font-mono-tech text-slate-400 uppercase">PIPELINES</div>
+                <div className="text-sm font-mono-tech font-bold text-fuchsia-400">ENTERPRISE RAG</div>
+              </div>
+              <div className="p-3.5 rounded-2xl bg-[#070b16]/80 border border-cyan-500/20 backdrop-blur-md">
+                <div className="text-[10px] font-mono-tech text-slate-400 uppercase">FOUNDATION MODELS</div>
+                <div className="text-sm font-mono-tech font-bold text-emerald-400">GEMINI · CLAUDE</div>
+              </div>
+            </>
+          )}
         </div>
       </div>
     </div>

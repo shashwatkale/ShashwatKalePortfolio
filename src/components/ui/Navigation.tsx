@@ -1,10 +1,12 @@
-import { Volume2, VolumeX, Radio, Sparkles, Bot } from 'lucide-react';
+import { Volume2, VolumeX, Radio, Sparkles, Bot, Gamepad2 } from 'lucide-react';
 import { useScrollStore } from '../../stores/scrollStore';
 import { audioEngine } from '../../utils/audioEngine';
 
 export function Navigation() {
   const isPlayingAudio = useScrollStore((s) => s.isPlayingAudio);
   const isMuted = useScrollStore((s) => s.isMuted);
+  const mode = useScrollStore((s) => s.mode);
+  const toggleMode = useScrollStore((s) => s.toggleMode);
   const toggleAudio = useScrollStore((s) => s.toggleAudio);
   const toggleMute = useScrollStore((s) => s.toggleMute);
   const toggleAgentModal = useScrollStore((s) => s.toggleAgentModal);
@@ -24,36 +26,81 @@ export function Navigation() {
     toggleMute();
   };
 
+  const handleSwitchMode = () => {
+    audioEngine.playSceneTransition();
+    toggleMode();
+  };
+
   return (
     <header className="fixed top-0 left-0 right-0 z-40 px-6 sm:px-10 py-5 flex items-center justify-between pointer-events-auto">
       {/* Brand & Name Monogram */}
       <div className="flex items-center gap-3">
-        <div className="w-9 h-9 rounded-xl bg-cyan-500/10 border border-cyan-400/30 flex items-center justify-center shadow-[0_0_15px_rgba(0,240,255,0.25)]">
-          <div className="w-2.5 h-2.5 rounded-sm bg-cyan-400 animate-pulse" />
+        <div
+          className={`w-9 h-9 rounded-xl border flex items-center justify-center transition-all ${
+            mode === 'gamer'
+              ? 'bg-pink-500/10 border-pink-400/50 shadow-[0_0_20px_rgba(236,72,153,0.4)]'
+              : 'bg-cyan-500/10 border-cyan-400/30 shadow-[0_0_15px_rgba(0,240,255,0.25)]'
+          }`}
+        >
+          <div
+            className={`w-2.5 h-2.5 rounded-sm animate-pulse ${
+              mode === 'gamer' ? 'bg-pink-400' : 'bg-cyan-400'
+            }`}
+          />
         </div>
         <div>
           <span className="font-display font-black text-lg sm:text-xl text-white tracking-wider block leading-tight">
             SHASHWAT KALE
           </span>
-          <span className="text-[10px] font-mono-tech text-cyan-400 tracking-widest uppercase">
-            GENAI ENGINEER @ TCS
+          <span
+            className={`text-[10px] font-mono-tech tracking-widest uppercase transition-colors ${
+              mode === 'gamer' ? 'text-pink-400 font-bold' : 'text-cyan-400'
+            }`}
+          >
+            {mode === 'gamer' ? 'GAMER & 3D SYSTEMS ARCHITECT' : 'GENAI ENGINEER @ TCS'}
           </span>
         </div>
       </div>
 
-      {/* Right HUD Controls */}
+      {/* Center/Right HUD Controls */}
       <div className="flex items-center gap-3 sm:gap-4">
-        {/* Agent Swarm Simulator Trigger */}
+        
+        {/* 🔥 DUAL MODE SWITCHER: AI ENGINEER ⇄ GAMER MODE */}
         <button
-          onClick={() => {
-            audioEngine.playClick();
-            toggleAgentModal();
-          }}
-          className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-cyan-500/10 hover:bg-cyan-500/20 border border-cyan-500/30 text-xs font-mono-tech text-cyan-300 hover:text-cyan-200 transition-all cursor-pointer shadow-[0_0_15px_rgba(0,240,255,0.2)]"
+          onClick={handleSwitchMode}
+          className={`flex items-center gap-2 px-4 py-1.5 rounded-full border text-xs font-mono-tech transition-all cursor-pointer transform hover:scale-105 shadow-lg ${
+            mode === 'gamer'
+              ? 'bg-gradient-to-r from-pink-600 to-rose-600 border-pink-300 text-white font-bold shadow-[0_0_25px_rgba(236,72,153,0.6)]'
+              : 'bg-gradient-to-r from-cyan-600 to-blue-600 border-cyan-300 text-slate-950 font-bold shadow-[0_0_25px_rgba(0,240,255,0.5)]'
+          }`}
         >
-          <Bot className="w-3.5 h-3.5 text-cyan-400" />
-          <span className="hidden sm:inline">AGENT SWARM LAB</span>
+          {mode === 'gamer' ? (
+            <>
+              <Gamepad2 className="w-3.5 h-3.5 animate-bounce" />
+              <span>GAMER MODE: ACTIVE</span>
+            </>
+          ) : (
+            <>
+              <Bot className="w-3.5 h-3.5 animate-pulse" />
+              <span>AI ENGINEER MODE</span>
+            </>
+          )}
+          <span className="text-[10px] opacity-75 hidden sm:inline">(SWITCH)</span>
         </button>
+
+        {/* Agent Swarm Lab button (in AI mode) */}
+        {mode === 'engineer' && (
+          <button
+            onClick={() => {
+              audioEngine.playClick();
+              toggleAgentModal();
+            }}
+            className="hidden lg:flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-cyan-500/10 hover:bg-cyan-500/20 border border-cyan-500/30 text-xs font-mono-tech text-cyan-300 hover:text-cyan-200 transition-all cursor-pointer shadow-[0_0_15px_rgba(0,240,255,0.2)]"
+          >
+            <Bot className="w-3.5 h-3.5 text-cyan-400" />
+            <span>AGENT LAB</span>
+          </button>
+        )}
 
         {/* Social Links */}
         <a
@@ -69,25 +116,19 @@ export function Navigation() {
           <span>GITHUB</span>
         </a>
 
-        <a
-          href="https://www.linkedin.com/in/shashwatkale27/"
-          target="_blank"
-          rel="noreferrer"
-          onClick={() => audioEngine.playClick()}
-          className="hidden md:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/5 hover:bg-white/15 border border-white/10 text-xs font-mono-tech text-slate-300 hover:text-cyan-400 transition-all"
-        >
-          <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
-            <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
-          </svg>
-          <span>LINKEDIN</span>
-        </a>
-
         {/* Audio Synthesizer Toggle */}
         <button
           onClick={handleToggleSound}
-          className="flex items-center gap-2.5 px-4 py-2 rounded-full bg-black/60 backdrop-blur-xl border border-cyan-500/30 hover:border-cyan-400 text-xs font-mono-tech text-white cursor-pointer transition-all shadow-[0_0_20px_rgba(0,0,0,0.5)] group"
+          className={`flex items-center gap-2.5 px-4 py-2 rounded-full bg-black/60 backdrop-blur-xl border text-xs font-mono-tech text-white cursor-pointer transition-all shadow-[0_0_20px_rgba(0,0,0,0.5)] group ${
+            mode === 'gamer' ? 'border-pink-500/40 hover:border-pink-400' : 'border-cyan-500/30 hover:border-cyan-400'
+          }`}
         >
-          <Radio className={`w-3.5 h-3.5 text-cyan-400 ${isPlayingAudio ? 'animate-spin' : ''}`} style={{ animationDuration: '4s' }} />
+          <Radio
+            className={`w-3.5 h-3.5 ${mode === 'gamer' ? 'text-pink-400' : 'text-cyan-400'} ${
+              isPlayingAudio ? 'animate-spin' : ''
+            }`}
+            style={{ animationDuration: '4s' }}
+          />
           <span className="hidden md:inline">
             {isPlayingAudio ? 'AUDIO: ON' : 'SOUND'}
           </span>

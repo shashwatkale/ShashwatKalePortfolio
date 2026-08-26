@@ -1,4 +1,4 @@
-import { ExternalLink, Code2, Sparkles } from 'lucide-react';
+import { ExternalLink, Code2, Sparkles, Gamepad2 } from 'lucide-react';
 import { useScrollStore } from '../../stores/scrollStore';
 import { audioEngine } from '../../utils/audioEngine';
 
@@ -15,6 +15,7 @@ interface ProjectInfo {
 
 export function ProjectsOverlay() {
   const progress = useScrollStore((s) => s.progress);
+  const mode = useScrollStore((s) => s.mode);
 
   // Active between 0.58 and 0.80
   let opacity = 0;
@@ -30,7 +31,7 @@ export function ProjectsOverlay() {
 
   if (opacity <= 0.01) return null;
 
-  const projects: ProjectInfo[] = [
+  const engineerProjects: ProjectInfo[] = [
     {
       id: 'p1',
       num: '01',
@@ -71,10 +72,51 @@ export function ProjectsOverlay() {
     },
   ];
 
-  // Determine active project card based on sub-progress within 0.58 to 0.80
+  const gamerProjects: ProjectInfo[] = [
+    {
+      id: 'gp1',
+      num: '01',
+      title: 'CYBER ARENA 3D GAME ENGINE',
+      category: 'PROCEDURAL WEBGL & GLSL RAYMARCHING',
+      subtitle: 'Real-time 3D arena simulation featuring custom fragment shaders, volumetric particle physics, and responsive camera collision at 240 FPS.',
+      tech: ['Three.js', 'GLSL Shaders', 'Web Audio API', 'TypeScript'],
+      github: 'https://github.com/shashwatkale',
+      demo: 'https://github.com/shashwatkale',
+    },
+    {
+      id: 'gp2',
+      num: '02',
+      title: 'NEURAL NPC BEHAVIOR & DIALOG ENGINE',
+      category: 'LLM-DRIVEN AUTONOMOUS GAME AGENTS',
+      subtitle: 'Autonomous game NPCs powered by local SLMs that form dynamic memory, negotiate with players, and adapt tactics in real-time.',
+      tech: ['LangChain', 'FastAPI', 'WebSockets', 'Vector DB'],
+      github: 'https://github.com/shashwatkale',
+    },
+    {
+      id: 'gp3',
+      num: '03',
+      title: 'SUB-1MS MULTIPLAYER STATE PROTOCOL',
+      category: 'HIGH-TICK STATE SYNCHRONIZATION',
+      subtitle: 'Ultra-low-latency state sync protocol using binary ArrayBuffers and client-side prediction for competitive gameplay.',
+      tech: ['Node.js', 'WebSockets', 'Binary Pack', 'TypeScript'],
+      github: 'https://github.com/shashwatkale',
+      demo: 'https://github.com/shashwatkale',
+    },
+    {
+      id: 'gp4',
+      num: '04',
+      title: 'SPATIAL AIM & REFLEX TELEMETRY',
+      category: 'COMPUTER VISION HUD TRACKER',
+      subtitle: 'Edge vision model analyzing crosshair flick trajectory, reaction latency, and angular velocity in tactical FPS matches.',
+      tech: ['PyTorch', 'OpenCV', 'CUDA', 'Python'],
+      github: 'https://github.com/shashwatkale',
+    },
+  ];
+
+  const activeProjectsList = mode === 'gamer' ? gamerProjects : engineerProjects;
   const subProg = (progress - 0.58) / 0.22;
   const activeProjIdx = Math.min(3, Math.floor(subProg * 4));
-  const activeProject = projects[activeProjIdx];
+  const activeProject = activeProjectsList[activeProjIdx];
 
   return (
     <div
@@ -83,24 +125,46 @@ export function ProjectsOverlay() {
     >
       <div className="max-w-3xl space-y-6">
         <div className="flex items-center gap-3">
-          <Sparkles className="w-4 h-4 text-amber-400" />
-          <span className="text-xs font-mono-tech text-amber-400 tracking-widest uppercase">
-            04 // FEATURED PRODUCTION PROJECTS
+          {mode === 'gamer' ? (
+            <Gamepad2 className="w-4 h-4 text-pink-400" />
+          ) : (
+            <Sparkles className="w-4 h-4 text-amber-400" />
+          )}
+          <span
+            className={`text-xs font-mono-tech tracking-widest uppercase ${
+              mode === 'gamer' ? 'text-pink-400' : 'text-amber-400'
+            }`}
+          >
+            {mode === 'gamer' ? '04 // 3D GRAPHICS & GAMING EXPERIMENTS' : '04 // FEATURED PRODUCTION PROJECTS'}
           </span>
         </div>
 
         {/* Active Project Card */}
-        <div className="p-6 sm:p-8 rounded-3xl bg-[#070b16]/90 border border-white/15 backdrop-blur-2xl shadow-[0_20px_60px_rgba(0,0,0,0.8)] pointer-events-auto transition-all duration-300">
+        <div
+          className={`p-6 sm:p-8 rounded-3xl backdrop-blur-2xl border pointer-events-auto transition-all duration-300 ${
+            mode === 'gamer'
+              ? 'bg-[#12071a]/90 border-pink-500/30 shadow-[0_20px_60px_rgba(236,72,153,0.3)]'
+              : 'bg-[#070b16]/90 border-white/15 shadow-[0_20px_60px_rgba(0,0,0,0.8)]'
+          }`}
+        >
           <div className="flex items-center justify-between mb-3">
-            <span className="text-xs font-mono-tech text-cyan-400 font-bold tracking-wider">
+            <span
+              className={`text-xs font-mono-tech font-bold tracking-wider ${
+                mode === 'gamer' ? 'text-pink-400' : 'text-cyan-400'
+              }`}
+            >
               PROJECT {activeProject.num} / 04 • {activeProject.category}
             </span>
             <div className="flex gap-2">
-              {projects.map((_, idx) => (
+              {activeProjectsList.map((_, idx) => (
                 <span
                   key={idx}
                   className={`w-2.5 h-2.5 rounded-full transition-colors ${
-                    idx === activeProjIdx ? 'bg-cyan-400' : 'bg-white/20'
+                    idx === activeProjIdx
+                      ? mode === 'gamer'
+                        ? 'bg-pink-400'
+                        : 'bg-cyan-400'
+                      : 'bg-white/20'
                   }`}
                 />
               ))}
@@ -119,7 +183,11 @@ export function ProjectsOverlay() {
             {activeProject.tech.map((t, idx) => (
               <span
                 key={idx}
-                className="px-3 py-1 rounded-full bg-white/[0.04] border border-white/10 text-xs font-mono-tech text-cyan-300"
+                className={`px-3 py-1 rounded-full text-xs font-mono-tech border ${
+                  mode === 'gamer'
+                    ? 'bg-pink-500/10 border-pink-500/30 text-pink-300'
+                    : 'bg-white/[0.04] border-white/10 text-cyan-300'
+                }`}
               >
                 {t}
               </span>
@@ -142,9 +210,13 @@ export function ProjectsOverlay() {
                 target="_blank"
                 rel="noreferrer"
                 onClick={() => audioEngine.playClick()}
-                className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-bold text-xs font-mono-tech tracking-wider transition-all shadow-[0_0_20px_rgba(0,240,255,0.3)]"
+                className={`flex items-center gap-2 px-5 py-2.5 rounded-full font-bold text-xs font-mono-tech tracking-wider transition-all shadow-lg ${
+                  mode === 'gamer'
+                    ? 'bg-pink-500 hover:bg-pink-400 text-white shadow-[0_0_20px_rgba(236,72,153,0.4)]'
+                    : 'bg-cyan-400 hover:bg-cyan-300 text-slate-950 shadow-[0_0_20px_rgba(0,240,255,0.3)]'
+                }`}
               >
-                <ExternalLink className="w-3.5 h-3.5" /> LIVE REPO / DETAILS
+                <ExternalLink className="w-3.5 h-3.5" /> LIVE REPO / DEMO
               </a>
             )}
           </div>

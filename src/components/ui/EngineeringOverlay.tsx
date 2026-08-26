@@ -29,7 +29,7 @@ export function EngineeringOverlay() {
             mode === 'gamer' ? 'text-amber-400' : 'text-emerald-400'
           }`}
         >
-          {mode === 'gamer' ? '03 // BATTLESTATION LOADOUT & HARDWARE' : '03 // FULL-STACK & CLOUD SYSTEMS'}
+          {mode === 'gamer' ? '03 // MSI GF63 BATTLESTATION & HARDWARE' : '03 // FULL-STACK & CLOUD SYSTEMS'}
         </div>
 
         <h2 className="text-5xl sm:text-7xl md:text-8xl font-display font-extrabold text-white tracking-tighter leading-[0.9]">
@@ -37,9 +37,9 @@ export function EngineeringOverlay() {
             <>
               THE RIG. <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-pink-500 to-purple-400">
-                ZERO LATENCY.
+                MSI GF63 THIN.
               </span> <br />
-              MAX FRAMES.
+              GTX 1650 Ti.
             </>
           ) : (
             <>
@@ -54,24 +54,24 @@ export function EngineeringOverlay() {
 
         <p className="text-base sm:text-lg text-slate-300 max-w-xl ml-auto font-light leading-relaxed">
           {mode === 'gamer'
-            ? 'Optimized for tournament responsiveness and real-time graphics rendering. Sub-millisecond polling peripherals and OLED pixel response.'
+            ? 'Powered by an MSI GF63 Thin with NVIDIA GeForce GTX 1650 Ti Max-Q. Optimized for competitive high-FPS Valorant matches and atmospheric, rich cinematic story-mode adventures.'
             : 'Bridging cutting-edge LLMs with high-throughput backends (FastAPI, Next.js, ASP.NET Core, C#), scalable databases (PostgreSQL, MS SQL, FAISS), and cloud architectures (AWS & GCP).'}
         </p>
 
         {/* Badges / Specs */}
         <div className="space-y-2 pt-2 max-w-xl ml-auto">
           <div className="text-[10px] font-mono-tech text-slate-400 uppercase tracking-widest">
-            {mode === 'gamer' ? 'HARDWARE & SYSTEM SPECS' : 'VERIFIED INDUSTRY CERTIFICATIONS'}
+            {mode === 'gamer' ? 'SHASHWAT\'S BATTLESTATION LOADOUT' : 'VERIFIED INDUSTRY CERTIFICATIONS'}
           </div>
           <div className="flex flex-wrap items-center justify-end gap-2">
             {(mode === 'gamer'
               ? [
-                  'NVIDIA RTX (CUDA + DLSS)',
-                  '240HZ FAST-IPS DISPLAY',
-                  '8000HZ ULTRALIGHT MOUSE',
-                  'CUSTOM LUBED MECHANICAL',
-                  'SPATIAL 3D AUDIO HEADSET',
-                  'LOW-PERSISTENCE G-SYNC',
+                  'MSI GF63 THIN RIG',
+                  'NVIDIA GTX 1650 Ti Max-Q',
+                  '144HZ HIGH-REFRESH DISPLAY',
+                  'VALORANT TACTICAL FPS',
+                  'CINEMATIC STORY CAMPAIGNS',
+                  'NVMe ULTRA-FAST STORAGE',
                 ]
               : [
                   'AWS CERTIFIED ML ENGINEER',

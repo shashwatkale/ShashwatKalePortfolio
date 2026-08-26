@@ -1,4 +1,4 @@
-import { Bot, Sparkles, Cpu, Layers, Gamepad2, Zap, Trophy } from 'lucide-react';
+import { Bot, Sparkles, Cpu, Layers, Gamepad2, Zap, Trophy, Film } from 'lucide-react';
 import { useScrollStore } from '../../stores/scrollStore';
 import { audioEngine } from '../../utils/audioEngine';
 
@@ -35,7 +35,7 @@ export function AgentSwarmOverlay() {
           {mode === 'gamer' ? (
             <>
               <Gamepad2 className="w-4 h-4" />
-              <span>05 // COMPETITIVE ROSTER & REFLEX ARENA</span>
+              <span>05 // VALORANT & CINEMATIC STORY GAMES</span>
             </>
           ) : (
             <>
@@ -48,9 +48,9 @@ export function AgentSwarmOverlay() {
         <h2 className="text-5xl sm:text-7xl md:text-8xl font-display font-extrabold text-white tracking-tighter leading-[0.9]">
           {mode === 'gamer' ? (
             <>
-              COMPETITIVE ARENA. <br />
+              VALORANT & <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-rose-400 to-amber-300">
-                SUB-140MS REFLEXES.
+                STORY MODE WORLDS.
               </span>
             </>
           ) : (
@@ -65,7 +65,7 @@ export function AgentSwarmOverlay() {
 
         <p className="text-base sm:text-lg text-slate-300 max-w-xl font-light leading-relaxed">
           {mode === 'gamer'
-            ? 'Controller in tactical FPS, frame-perfect timing in Soulsborne titles, and rigorous reflex training that directly sharpens high-speed engineering focus.'
+            ? 'Whether executing tactical clutch rounds in Valorant or immersing in rich narrative storytelling campaigns with deep lore, gaming shapes my strategic intuition and creative problem solving.'
             : 'Architecting hierarchical LangGraph agent networks that decompose complex objectives, execute deterministic MCP tools, self-correct errors, and output strict structured data.'}
         </p>
 
@@ -85,7 +85,7 @@ export function AgentSwarmOverlay() {
             {mode === 'gamer' ? (
               <>
                 <Gamepad2 className="w-4 h-4" />
-                <span>OPEN AIM TRAINER & BATTLESTATION LAB</span>
+                <span>OPEN MSI GAMING LAB & AIM TRAINER</span>
               </>
             ) : (
               <>
@@ -102,17 +102,17 @@ export function AgentSwarmOverlay() {
           {mode === 'gamer' ? (
             <>
               <div className="p-3.5 rounded-2xl bg-[#12071a]/80 border border-pink-500/20 backdrop-blur-md flex items-center gap-3">
-                <Zap className="w-5 h-5 text-pink-400 shrink-0" />
+                <Trophy className="w-5 h-5 text-pink-400 shrink-0" />
                 <div>
-                  <div className="text-[9px] font-mono-tech text-slate-400 uppercase">REACTION TIME</div>
-                  <div className="text-sm font-mono-tech font-bold text-white">&lt; 140 MS</div>
+                  <div className="text-[9px] font-mono-tech text-slate-400 uppercase">TACTICAL FPS</div>
+                  <div className="text-sm font-mono-tech font-bold text-white">VALORANT</div>
                 </div>
               </div>
               <div className="p-3.5 rounded-2xl bg-[#12071a]/80 border border-pink-500/20 backdrop-blur-md flex items-center gap-3">
-                <Trophy className="w-5 h-5 text-amber-400 shrink-0" />
+                <Film className="w-5 h-5 text-amber-400 shrink-0" />
                 <div>
-                  <div className="text-[9px] font-mono-tech text-slate-400 uppercase">DISCIPLINE</div>
-                  <div className="text-sm font-mono-tech font-bold text-white">CONTROLLER / AWP</div>
+                  <div className="text-[9px] font-mono-tech text-slate-400 uppercase">GENRE</div>
+                  <div className="text-sm font-mono-tech font-bold text-white">STORY-MODE</div>
                 </div>
               </div>
             </>

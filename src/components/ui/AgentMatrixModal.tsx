@@ -12,6 +12,7 @@ import {
   Trophy,
   Target,
   Monitor,
+  Film,
 } from 'lucide-react';
 import { useScrollStore } from '../../stores/scrollStore';
 import { audioEngine } from '../../utils/audioEngine';
@@ -134,7 +135,7 @@ export function AgentMatrixModal() {
             : 'border-cyan-500/30 shadow-[0_0_80px_rgba(0,240,255,0.25)]'
         }`}
       >
-        {/* Glow */}
+        {/* Ambient Glow */}
         <div
           className={`absolute -top-32 -right-32 w-64 h-64 rounded-full blur-3xl pointer-events-none ${
             mode === 'gamer' ? 'bg-pink-600/20' : 'bg-cyan-500/20'
@@ -157,7 +158,7 @@ export function AgentMatrixModal() {
               {mode === 'gamer' ? (
                 <>
                   <Gamepad2 className="w-4 h-4" />
-                  <span>SHASHWAT KALE // GAMER PROFILE & BATTLESTATION LAB</span>
+                  <span>SHASHWAT KALE // MSI GF63 BATTLESTATION & GAMER ROSTER</span>
                 </>
               ) : (
                 <>
@@ -171,7 +172,7 @@ export function AgentMatrixModal() {
             </h2>
             <p className="text-sm font-mono-tech text-slate-400">
               {mode === 'gamer'
-                ? 'Where sub-140ms tactical reflexes meet 240 FPS rendering physics.'
+                ? 'MSI GF63 Thin • NVIDIA GTX 1650 Ti Max-Q • Valorant & Cinematic Story Adventures'
                 : 'Interactive demonstration of LangGraph state machines, MCP tool-calling, and zero-hallucination structured workflows.'}
             </p>
           </div>
@@ -197,7 +198,7 @@ export function AgentMatrixModal() {
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2 text-xs font-mono-tech text-pink-400">
                     <Target className="w-4 h-4 animate-spin" style={{ animationDuration: '6s' }} />
-                    <span>INTERACTIVE REFLEX & AIM TARGET</span>
+                    <span>VALORANT CROSSHAIR & AIM REFLEX TRAINER</span>
                   </div>
                   <div className="flex items-center gap-4 text-xs font-mono-tech">
                     <span className="text-white font-bold">SCORE: {score}</span>
@@ -225,7 +226,7 @@ export function AgentMatrixModal() {
                   </button>
 
                   <div className="absolute bottom-3 left-4 text-[10px] font-mono-tech text-slate-500">
-                    CLICK THE NEON TARGET TO MEASURE REAL-TIME REACTION TIME
+                    CLICK THE NEON TARGET TO MEASURE REAL-TIME FLICK LATENCY
                   </div>
                 </div>
 
@@ -235,7 +236,7 @@ export function AgentMatrixModal() {
                     {reactionTime ? `${reactionTime} ms` : 'CLICK TARGET TO TEST'}
                   </span>
                   <span className="text-[10px] text-slate-500 hidden sm:inline">
-                    {reactionTime && reactionTime < 200 ? '⚡ PRO TIER' : 'ACTIVE'}
+                    {reactionTime && reactionTime < 200 ? '⚡ RADIANT REFLEX' : 'READY'}
                   </span>
                 </div>
               </div>
@@ -243,15 +244,35 @@ export function AgentMatrixModal() {
               {/* Right Column: Game Titles */}
               <div className="lg:col-span-5 space-y-4">
                 <div className="text-xs font-mono-tech text-pink-400 uppercase tracking-widest">
-                  COMPETITIVE ROSTER & GENRES
+                  SHASHWAT'S FAVORITE GAMES & GENRES
                 </div>
 
                 <div className="space-y-3">
                   {[
-                    { title: 'VALORANT', role: 'Controller / Initiator (Viper, Omen)', badge: 'TACTICAL FPS', color: 'border-pink-500/30 text-pink-300' },
-                    { title: 'COUNTER-STRIKE 2', role: 'Entry Fragging & Precision Awping', badge: 'COMPETITIVE FPS', color: 'border-amber-500/30 text-amber-300' },
-                    { title: 'ELDEN RING / SOULSBORNE', role: 'No-Summon Challenge Runs, High-Dex', badge: 'ACTION RPG', color: 'border-cyan-500/30 text-cyan-300' },
-                    { title: 'CYBERPUNK 2077 & SIMS', role: 'Max Raytracing, High-Speed Navigation', badge: 'IMMERSIVE WORLDS', color: 'border-purple-500/30 text-purple-300' },
+                    {
+                      title: 'VALORANT',
+                      role: 'Tactical Shooter • Lineups, Controller Smoke Execution & Entry Timing',
+                      badge: 'TACTICAL FPS',
+                      color: 'border-pink-500/30 text-pink-300',
+                    },
+                    {
+                      title: 'CINEMATIC STORY-MODE CAMPAIGNS',
+                      role: 'Deep Narrative, Emotional Character Arcs & Worldbuilding',
+                      badge: 'STORY MODE',
+                      color: 'border-amber-500/30 text-amber-300',
+                    },
+                    {
+                      title: 'IMMERSIVE ACTION RPGs',
+                      role: 'Open-World Exploration, Soulsborne Lore & High-Stakes Combat',
+                      badge: 'EXPLORATION',
+                      color: 'border-cyan-500/30 text-cyan-300',
+                    },
+                    {
+                      title: 'INTERACTIVE NARRATIVES',
+                      role: 'High-Branching Storylines & Tactical Player Choices',
+                      badge: 'ATMOSPHERIC',
+                      color: 'border-purple-500/30 text-purple-300',
+                    },
                   ].map((g, idx) => (
                     <div key={idx} className={`p-3.5 rounded-xl bg-white/[0.02] border ${g.color} space-y-1`}>
                       <div className="flex items-center justify-between">
@@ -272,30 +293,30 @@ export function AgentMatrixModal() {
               <div className="p-4 rounded-2xl bg-white/[0.02] border border-white/5 space-y-2">
                 <div className="flex items-center gap-2 text-cyan-400 text-xs font-mono-tech">
                   <Monitor className="w-4 h-4" />
-                  <span>HARDWARE RIG</span>
+                  <span>MSI GF63 THIN</span>
                 </div>
                 <p className="text-xs font-mono-tech text-slate-300 leading-relaxed">
-                  NVIDIA RTX GPU (CUDA Compute & DLSS 3.5), 240Hz Fast-IPS Monitor, Ultralight 8000Hz Polling Mouse, Custom Lubed Mechanical Keyboard.
+                  Equipped with an NVIDIA GeForce GTX 1650 Ti Max-Q GPU and 144Hz high-refresh gaming display, tuned for smooth frame pacing.
                 </p>
               </div>
 
               <div className="p-4 rounded-2xl bg-white/[0.02] border border-white/5 space-y-2">
                 <div className="flex items-center gap-2 text-pink-400 text-xs font-mono-tech">
-                  <Zap className="w-4 h-4" />
-                  <span>LATENCY OBSESSION</span>
+                  <Trophy className="w-4 h-4" />
+                  <span>VALORANT FOCUS</span>
                 </div>
                 <p className="text-xs font-mono-tech text-slate-300 leading-relaxed">
-                  Sub-150ms gaming reflex instincts translate directly into architecting sub-15ms Time-to-First-Token (TTFT) in generative AI backends.
+                  Strategic ability combos, crosshair placement discipline, and team economy management in competitive Valorant.
                 </p>
               </div>
 
               <div className="p-4 rounded-2xl bg-white/[0.02] border border-white/5 space-y-2">
                 <div className="flex items-center gap-2 text-amber-400 text-xs font-mono-tech">
-                  <Trophy className="w-4 h-4" />
-                  <span>THE PHILOSOPHY</span>
+                  <Film className="w-4 h-4" />
+                  <span>STORYTELLING PASSION</span>
                 </div>
                 <p className="text-xs font-mono-tech text-slate-300 leading-relaxed">
-                  Tactical communication, fast adaptation under high pressure, and ruthless optimization across both virtual battlegrounds and production AI systems.
+                  Story-mode games inspire my appreciation for intricate architectural design, atmospheric depth, and user empathy in software.
                 </p>
               </div>
             </div>

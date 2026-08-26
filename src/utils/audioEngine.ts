@@ -95,7 +95,6 @@ class AudioEngine {
 
   public updateFilterWithScroll(progress: number) {
     if (!this.ctx || !this.filter || !this.isPlaying) return;
-    // Morph filter frequency as user travels deeper into the 3D world
     const targetFreq = 200 + progress * 600;
     this.filter.frequency.setTargetAtTime(targetFreq, this.ctx.currentTime, 0.1);
   }
@@ -145,7 +144,7 @@ class AudioEngine {
     osc.frequency.setValueAtTime(220, now);
     osc.frequency.exponentialRampToValueAtTime(880, now + 0.15);
 
-    gain.gain.setValueAtTime(0.04, now);
+    gain.gain.setValueAtTime(0.05, now);
     gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.15);
 
     osc.connect(gain);
@@ -153,6 +152,30 @@ class AudioEngine {
 
     osc.start(now);
     osc.stop(now + 0.15);
+  }
+
+  public playWarpSound() {
+    if (this.isMuted) return;
+    this.init();
+    if (!this.ctx || !this.masterGain) return;
+    if (this.ctx.state === 'suspended') this.ctx.resume();
+
+    const now = this.ctx.currentTime;
+    const osc = this.ctx.createOscillator();
+    const gain = this.ctx.createGain();
+
+    osc.type = 'sawtooth';
+    osc.frequency.setValueAtTime(80, now);
+    osc.frequency.exponentialRampToValueAtTime(1200, now + 0.6);
+
+    gain.gain.setValueAtTime(0.08, now);
+    gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.6);
+
+    osc.connect(gain);
+    gain.connect(this.masterGain);
+
+    osc.start(now);
+    osc.stop(now + 0.6);
   }
 }
 

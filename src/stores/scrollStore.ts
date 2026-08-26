@@ -10,6 +10,8 @@ export interface ScrollState {
   isPlayingAudio: boolean;
   mode: PortfolioMode;
   isAgentModalOpen: boolean;
+  isTerminalOpen: boolean;
+  isOverdriveActive: boolean;
   mouse: { x: number; y: number; targetX: number; targetY: number };
   setProgress: (progress: number) => void;
   setActiveScene: (scene: number, name: string) => void;
@@ -19,6 +21,10 @@ export interface ScrollState {
   toggleMode: () => void;
   toggleAgentModal: () => void;
   setAgentModalOpen: (open: boolean) => void;
+  toggleTerminal: () => void;
+  setTerminalOpen: (open: boolean) => void;
+  toggleOverdrive: () => void;
+  setOverdriveActive: (active: boolean) => void;
   setMouse: (x: number, y: number) => void;
 }
 
@@ -34,9 +40,9 @@ const ENGINEER_SCENE_NAMES = [
 const GAMER_SCENE_NAMES = [
   'GAMER SYSTEM INITIALIZING // 240 FPS',
   'GRAPHICS ENGINE // RAYTRACING & WORLDS',
-  'BATTLESTATION RIG // LATENCY OBSESSION',
+  'BATTLESTATION RIG // MSI GF63 GTX 1650 Ti',
   '3D GAME EXPERIMENTS // PROCEDURAL ENGINES',
-  'COMPETITIVE ROSTER // REFLEX ARENA',
+  'VALORANT & STORY CAMPAIGNS // REFLEX ARENA',
   'NEXUS CONVERGENCE // BUILD & PLAY',
 ];
 
@@ -48,6 +54,8 @@ export const useScrollStore = create<ScrollState>((set, get) => ({
   isPlayingAudio: false,
   mode: 'engineer',
   isAgentModalOpen: false,
+  isTerminalOpen: false,
+  isOverdriveActive: false,
   mouse: { x: 0, y: 0, targetX: 0, targetY: 0 },
 
   setProgress: (progress: number) => {
@@ -92,6 +100,14 @@ export const useScrollStore = create<ScrollState>((set, get) => ({
   toggleAgentModal: () => set((state) => ({ isAgentModalOpen: !state.isAgentModalOpen })),
 
   setAgentModalOpen: (open: boolean) => set({ isAgentModalOpen: open }),
+
+  toggleTerminal: () => set((state) => ({ isTerminalOpen: !state.isTerminalOpen })),
+
+  setTerminalOpen: (open: boolean) => set({ isTerminalOpen: open }),
+
+  toggleOverdrive: () => set((state) => ({ isOverdriveActive: !state.isOverdriveActive })),
+
+  setOverdriveActive: (active: boolean) => set({ isOverdriveActive: active }),
 
   setMouse: (targetX: number, targetY: number) =>
     set((state) => ({

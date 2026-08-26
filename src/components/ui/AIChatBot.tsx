@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { Bot, Send, X, Sparkles, User, Minimize2, MessageSquare, Terminal } from 'lucide-react';
+import { Bot, Send, Sparkles, User, Minimize2 } from 'lucide-react';
 import { audioEngine } from '../../utils/audioEngine';
 
 interface Message {
@@ -15,7 +15,7 @@ export function AIChatBot() {
   const [messages, setMessages] = useState<Message[]>([
     {
       sender: 'bot',
-      text: "Hello! I am Shashwat's AI Copilot. Ask me anything about his GenAI engineering experience at TCS, RAG architectures, MCP servers, or production projects!",
+      text: "Hello! I am Shashwat's AI Copilot. Ask me anything about his GenAI engineering experience at TCS, RAG architectures, MCP servers, or his gaming battlestation & favorite games!",
       time: 'Just now',
     },
   ]);
@@ -33,6 +33,11 @@ export function AIChatBot() {
   }, [messages, isOpen]);
 
   const knowledgeBase: { keywords: string[]; response: string }[] = [
+    {
+      keywords: ['gaming', 'game', 'gamer', 'valorant', 'story', 'pc', 'laptop', 'msi', '1650', 'rig', 'hardware', 'setup'],
+      response:
+        "🎮 Shashwat's Gamer Profile & Battlestation:\n• PC Rig: MSI GF63 Thin laptop powered by NVIDIA GeForce GTX 1650 Ti Max-Q\n• Primary Games: VALORANT (tactical team shooter & precision aim) and immersive, cinematic story-mode adventures with deep lore & worldbuilding.\n• Philosophy: Competitive FPS discipline and rich narrative storytelling inspire his clean system architectures and sub-15ms AI response times!",
+    },
     {
       keywords: ['jansetu', 'civic', 'complaint', 'vision', 'gemini'],
       response:
@@ -95,10 +100,9 @@ export function AIChatBot() {
     setInput('');
     setIsTyping(true);
 
-    // Answer matching
     const lower = query.toLowerCase();
     let reply =
-      "I specialize in Shashwat's GenAI background, MCP servers, enterprise RAG, and production projects. You can ask about JanSetu AI, his TCS experience, or contact information!";
+      "I specialize in Shashwat's GenAI background, MCP servers, enterprise RAG, and his MSI GF63 gaming setup (Valorant & Story Games). You can ask about JanSetu AI, his TCS experience, or contact information!";
 
     for (const item of knowledgeBase) {
       if (item.keywords.some((k) => lower.includes(k))) {
@@ -203,11 +207,11 @@ export function AIChatBot() {
 
           {/* Quick Suggested Prompts */}
           <div className="px-3 py-2 border-t border-white/5 bg-black/40 flex items-center gap-1.5 overflow-x-auto text-[10px] font-mono-tech scrollbar-none">
-            {['JanSetu AI', 'TCS Experience', 'MCP & RAG', 'Certifications', 'Contact'].map(
+            {['MSI GF63 & Games', 'JanSetu AI', 'TCS Experience', 'MCP & RAG', 'Certifications', 'Contact'].map(
               (prompt, idx) => (
                 <button
                   key={idx}
-                  onClick={() => handleSend(prompt)}
+                  onClick={() => handleSend(prompt === 'MSI GF63 & Games' ? 'Tell me about your gaming PC and games' : prompt)}
                   className="px-2.5 py-1 rounded-full bg-white/[0.04] hover:bg-cyan-500/15 border border-white/10 hover:border-cyan-400/40 text-cyan-300 whitespace-nowrap transition-all cursor-pointer"
                 >
                   {prompt}
@@ -223,7 +227,7 @@ export function AIChatBot() {
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={(e) => e.key === 'Enter' && handleSend()}
-              placeholder="Ask about Shashwat's GenAI work..."
+              placeholder="Ask about Shashwat's AI work or gaming..."
               className="flex-1 bg-white/[0.04] border border-white/10 focus:border-cyan-400 rounded-xl px-3 py-2 text-xs font-mono-tech text-white outline-none placeholder:text-slate-500"
             />
             <button
@@ -254,4 +258,3 @@ export function AIChatBot() {
     </div>
   );
 }
-

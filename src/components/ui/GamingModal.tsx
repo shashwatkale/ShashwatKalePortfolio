@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { X, Gamepad2, Trophy, Target, Zap, Cpu, Sparkles, Monitor, ShieldAlert } from 'lucide-react';
+import { X, Gamepad2, Trophy, Target, Zap, Monitor } from 'lucide-react';
 import { useScrollStore } from '../../stores/scrollStore';
 import { audioEngine } from '../../utils/audioEngine';
 
@@ -114,7 +114,7 @@ export function GamingModal() {
               {/* Clickable Target Node */}
               <button
                 onClick={handleTargetClick}
-                className="absolute w-12 h-12 -ml-6 -mt-6 rounded-full bg-gradient-to-r from-pink-500 to-cyan-400 p-[2px] shadow-[0_0_25px_rgba(236,72,153,0.8)] hover:scale-110 active:scale-95 transition-transform duration-100 flex items-center justify-center animate-pulse"
+                className="absolute w-12 h-12 -ml-6 -mt-6 rounded-full bg-gradient-to-r from-pink-500 to-cyan-400 p-[2px] shadow-[0_0_25px_rgba(236,72,153,0.8)] hover:scale-110 active:scale-95 transition-transform duration-100 flex items-center justify-center animate-pulse cursor-pointer"
                 style={{
                   left: `${targetPos.x}%`,
                   top: `${targetPos.y}%`,
